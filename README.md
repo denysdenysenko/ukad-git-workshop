@@ -64,8 +64,7 @@ git push --force
                               /   \      /|||\      /   \
                              /     \    /|||||\    /     \
                             /       \  o=======o  /      _\
-                             `--...__|`-._   _.-'|__...--'
-                                     |    ` '    |
+                             `--...__|`-. _ _ .-'|__...--'
 ```
 * Open your branch in GitHub to see that wrong commit has disappeared there too.
 
@@ -133,7 +132,7 @@ Merge is a process of creating a new commit to unify changes from two different 
 ```
 git checkout master
 
-git checkout -b <your-prefix>/branch-a
+git checkout -b <your-prefix>/merge-a
 touch FileA.txt
 git add *
 git commit -m A
@@ -141,15 +140,53 @@ git commit -m A
 
 git checkout master
 
-git checkout -b <your-prefix>/branch-b
+git checkout -b <your-prefix>/merge-b
 touch FileB.txt
 git add *
 git commit -m B
 
-git merge <your-prefix>/branch-a -m "Merge branch-a into branch-b"
+git merge <your-prefix>/merge-a -m "Merge A into B"
 
 git log --oneline --graph --all
 ```
+
+### Rebase
+Let's imagine this time that we have exactly the same scenario, but instead of doing merge we now want to move our `branch-b` as if it was started from `branch-a` and not `master`.
+Let's repeat all the previous steps, but this time let's review our log before the final step and after rebase is done:
+```
+git checkout master
+
+git checkout -b test/rebase-a
+touch FileA.txt
+git add *
+git commit -m A
+
+
+git checkout master
+
+git checkout -b test/rebase-b
+touch FileB1.txt
+git add *
+git commit -m B1
+touch FileB2.txt
+git add *
+git commit -m B2
+
+git log --oneline --graph --all
+```
+
+Now we can do the magic trick to move our commits through repository with the help of rebase command.
+The syntax can be read as follows:
+```
+REM rebase --onto <the new place> <from the old place> <my branch named>
+git rebase --onto <your prefix>/rebase-a master <your-prefix>/rebase-b
+```
+Or simpler versiod would be:
+```
+REM rebase my current branch onto the specified branch
+git rebase <your prefix>/rebase-a
+```
+Rebasing is harder in some cases, but the great outcome is that you can have a clean straight repository history that's easy to navigate through.
 
 ## Multiple origins
 
