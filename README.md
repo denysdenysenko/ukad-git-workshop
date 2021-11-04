@@ -20,15 +20,16 @@ git checkout <your-prefix>/force-push-test
 REM alternatively you can replace previous two commands with a single command
 REM git checkout -b <your-prefix>/force-push-test
 
-type nul > File1.txt
+touch File1.txt
+REM execute next command if you use cmd: type nul > File1.txt
 git add File1.txt
 git commit -m "Commit 1"
 
-type nul > File2.txt
+touch File2.txt
 git add File2.txt
 git commit -m "Commit 2"
 
-type nul > WrongFile.txt
+touch WrongFile.txt
 git add WrongFile.txt
 git commit -m "Wrong file"
 
@@ -53,18 +54,18 @@ git push
 git push --force
 ```
 ```
-                                      _.-'~~~~~~~`-._
-                                     /      | |      \
-                                    /       | |       \
-                                   | _______| |_______ |
-                                   |/ ----- \ / ----- \|
-                                  /  (     )   (     )  \
-                                 / \  ----- ( ) -----  / \
-                                /   \      /|||\      /   \
-                               /     \    /|||||\    /     \
-                              /       \  o=======o  /      _\
-                               `--...__|`-._   _.-'|__...--'
-                                       |    ` '    |
+                                    _.-'~~~~~~~`-._
+                                   /      | |      \
+                                  /       | |       \
+                                 | _______| |_______ |
+                                 |/ ----- \ / ----- \|
+                                /  (     )   (     )  \
+                               / \  ----- ( ) -----  / \
+                              /   \      /|||\      /   \
+                             /     \    /|||||\    /     \
+                            /       \  o=======o  /      _\
+                             `--...__|`-._   _.-'|__...--'
+                                     |    ` '    |
 ```
 * Open your branch in GitHub to see that wrong commit has disappeared there too.
 
@@ -116,6 +117,39 @@ URL to the task tracker with more details goes to the third line"
 ```
 
 ## Merge vs Rebase vs Fast Forward
+### Fast Forward 
+Fast forward is a process of reassigning your branch label to some later commit if another commit is a direct descendant of current commit. In other words:
+```
+* Commit 3 - 1900-01-03 - some-other-branch /*you want this changes in your current branch*/
+|
+* Commit 2 - 1900-01-02
+|
+* Commit 1 - 1900-01-01 - your-current-branch /*you stay here*/
+```
+You can fast-forward without creating additional merge commit so that your-current-branch points to the Commit 3 in the same way as some-other-branch. Most of the time you'd want to use fast-forward whenever possible as it makes visual tree cleaner.
+
+### Merge
+Merge is a process of creating a new commit to unify changes from two different branches. Nothing special, run next steps to evaluate if needed:
+```
+git checkout master
+
+git checkout -b <your-prefix>/branch-a
+touch FileA.txt
+git add *
+git commit -m A
+
+
+git checkout master
+
+git checkout -b <your-prefix>/branch-b
+touch FileB.txt
+git add *
+git commit -m B
+
+git merge <your-prefix>/branch-a -m "Merge branch-a into branch-b"
+
+git log --oneline --graph --all
+```
 
 ## Multiple origins
 
