@@ -51,21 +51,20 @@ git push
 * Forcibly push your branch to the remote repository, this will reset branch pointer to the same commit like in your local copy.
 ```
 git push --force
-
-REM              _.-'~~~~~~`-._
-REM             /      ||      \
-REM            /       ||       \
-REM           |        ||        |
-REM           | _______||_______ |
-REM           |/ ----- \/ ----- \|
-REM          /  (     )  (     )  \
-REM         / \  ----- () -----  / \
-REM        /   \      /||\      /   \
-REM       /     \    /||||\    /     \
-REM      /       \  /||||||\  /       \
-REM     /_        \o========o/        _\
-REM       `--...__|`-._  _.-'|__...--'
-REM               |    `'    |
+```
+```
+                                      _.-'~~~~~~~`-._
+                                     /      | |      \
+                                    /       | |       \
+                                   | _______| |_______ |
+                                   |/ ----- \ / ----- \|
+                                  /  (     )   (     )  \
+                                 / \  ----- ( ) -----  / \
+                                /   \      /|||\      /   \
+                               /     \    /|||||\    /     \
+                              /       \  o=======o  /      _\
+                               `--...__|`-._   _.-'|__...--'
+                                       |    ` '    |
 ```
 * Open your branch in GitHub to see that wrong commit has disappeared there too.
 
@@ -94,14 +93,14 @@ git stash apply
 git commit -m "This is a correct branch to commit now"
 ```
 ### Amend
-Amend functionality is very useful if you made accidental commit or you just want to add a tiny bit to the latest commit before pushing to the remote repository. Typical scenarios would be: update typo in commit message, add missing file etc. Amend doesn't work terribly well if you already pushed to the remote repository as it creates a new commit with new hash so would requuire force push.
-And example of editing commit message:
+Amend functionality is very useful if you made accidental commit or you just want to add a tiny bit to the latest commit before pushing to the remote repository. Typical scenarios would be: update typo in commit message, add missing file etc. Amend doesn't work terribly well if you already pushed to the remote repository as it creates a new commit with new hash so would require force push.
+Example of editing commit message:
 ```
 git commit --amend -m "This is a correct commit message"
 ```
 
 ### Cherry-pick
-Cherry-picking is a process of copying a commit from one branch to another. Please be aware that cherry-picking creates a separate commit with separate commit id, therefore for git it appears as a separate piece of work and might have tricky behaviour during branches merging. It's good if you want to copy some functionality from abandoned branch.
+Cherry-picking is a process of copying a commit from one branch to another. Please be aware that cherry-picking creates a separate commit with separate commit id, therefore for git it appears as a separate piece of work and might have tricky behaviour during branches merging. It works well if you want to copy some functionality from abandoned branch.
 ```
 git checkout master
 git checkout -b <your-prefix>/cherry-pick-test
@@ -112,8 +111,8 @@ git cherry-pick <commit hash>
 Use multiline comments. Do not put sensitive information into the commit, but put enough data to be able to investigate commit origin in the future. A good example would be:
 ```
 git commit -m "Task name goes to the first line
-Particular details of what was done
-URL to the task tracker with more details"
+Particular details of what was done go to the second line
+URL to the task tracker with more details goes to the third line"
 ```
 
 ## Merge vs Rebase vs Fast Forward
