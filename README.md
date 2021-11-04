@@ -63,8 +63,8 @@ git push --force
                                / \  ----- ( ) -----  / \
                               /   \      /|||\      /   \
                              /     \    /|||||\    /     \
-                            /       \  o=======o  /      _\
-                             `--...__|`-. _ _ .-'|__...--'
+                            /       \  /|||||||\  /       \
+                             `--...-' o=========o `--...--'
 ```
 * Open your branch in GitHub to see that wrong commit has disappeared there too.
 
@@ -187,7 +187,9 @@ REM rebase my current branch onto the specified branch
 git rebase <your prefix>/rebase-a
 ```
 Query log to see the difference:
-```git log --oneline --graph --all```
+```
+git log --oneline --graph --all
+```
 Rebasing is harder in some cases, but the great outcome is that you can have a clean straight repository history that's easy to navigate through.
 
 ## Multiple origins
