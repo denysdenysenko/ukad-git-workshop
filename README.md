@@ -64,7 +64,7 @@ git push --force
                               /   \      /|||\      /   \
                              /     \    /|||||\    /     \
                             /       \  /|||||||\  /       \
-                             `--...-' o=========o `--...--'
+                             `--...__ o=========o ___...--'
 ```
 * Open your branch in GitHub to see that wrong commit has disappeared there too.
 
