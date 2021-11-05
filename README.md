@@ -66,7 +66,7 @@ git push --force
                             /       \  o=======o  /       \
                            /____,.--'     \ /     '--...___\
 ```
-* Open your branch in GitHub to see that wrong commit has disappeared there too.
+* Open GitHub, find your branch and  see that wrong commit has disappeared there too.
 
 ## Squash
 Let's suppose that two commits that we made before should really be one. What you can use to achive the goal is so-called interactive rebase. Once interactive rebase is started, you will get a text file, containing commits to be updated.
@@ -201,17 +201,17 @@ You can work with git repositoryies using different topoligies, where you can ha
 git remote add second-origin https://github.com/denysdenysenko/mess-up-with-git-second-origin.git
 git remote -v
 ```
-* If you open your new remote server on GitHup you'd see it's empty. Let's push some work there:
+* If you open your new remote server on GitHub you'd see it's empty. Let's push some work there:
 ```
 git checkout master
 git push second-origin
 ```
 * If you open your new remote repository now you'd see that it contains exactly the same commit as the initial origin has. Content and ids or commits will also match.
 * Let's now check how we can see if certain commit has got into a specific remote. Execute `git log` and review branch names list in parentheses:
-- _HEAD ->  master_ - my current local branch with current position on this commit;
-- _origin/master_ - same commit identified as branch tip in origin;
-- _second-origin/master_ - same commit identified as branch tip in second origin;
-- _origin/HEAD_ - commit identified as current in origin.
+ - _HEAD ->  master_ - my current local branch with current position on this commit;
+ - _origin/master_ - same commit identified as branch tip in origin;
+ - _second-origin/master_ - same commit identified as branch tip in second origin;
+ - _origin/HEAD_ - commit identified as current in origin.
 
 * Now let's push our branch _<your-prefix>/rebase-b_ to first origin, remove it locally, then pull it back and push to a second-origin. Execute steps one at a time to follow along:
 ```
