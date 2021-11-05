@@ -12,13 +12,13 @@ git clone https://github.com/denysdenysenko/mess-up-with-git.git
 cd mess-up-with-git
 
 REM create a new branch
-git branch <your-prefix>/force-push-test
+git branch <your prefix>/force-push-test
 
 REM switch to it
-git checkout <your-prefix>/force-push-test
+git checkout <your prefix>/force-push-test
 
 REM alternatively you can replace previous two commands with a single command
-REM git checkout -b <your-prefix>/force-push-test
+REM git checkout -b <your prefix>/force-push-test
 
 touch File1.txt
 REM execute next command if you use cmd: type nul > File1.txt
@@ -103,7 +103,7 @@ git commit --amend -m "This is a correct commit message"
 Cherry-picking is a process of copying a commit from one branch to another. Please be aware that cherry-picking creates a separate commit with separate commit id, therefore for git it appears as a separate piece of work and might have tricky behaviour during branches merging. It works well if you want to copy some functionality from abandoned branch.
 ```
 git checkout master
-git checkout -b <your-prefix>/cherry-pick-test
+git checkout -b <your prefix>/cherry-pick-test
 git cherry-pick <commit hash>
 ```
 
@@ -132,7 +132,7 @@ Merge is a process of creating a new commit to unify changes from two different 
 ```
 git checkout master
 
-git checkout -b <your-prefix>/merge-a
+git checkout -b <your prefix>/merge-a
 touch FileA.txt
 git add *
 git commit -m A
@@ -140,12 +140,12 @@ git commit -m A
 
 git checkout master
 
-git checkout -b <your-prefix>/merge-b
+git checkout -b <your prefix>/merge-b
 touch FileB.txt
 git add *
 git commit -m B
 
-git merge <your-prefix>/merge-a -m "Merge A into B"
+git merge <your prefix>/merge-a -m "Merge A into B"
 
 git log --oneline --graph --all
 ```
@@ -179,7 +179,7 @@ Now we can do the magic trick to move our commits through repository with the he
 The syntax can be read as follows:
 ```
 REM rebase --onto <the new place> <from the old place> <my branch named>
-git rebase --onto <your prefix>/rebase-a master <your-prefix>/rebase-b
+git rebase --onto <your prefix>/rebase-a master <your prefix>/rebase-b
 ```
 Or simpler versiod would be:
 ```
@@ -213,13 +213,13 @@ git push second-origin
    - _second-origin/master_ - same commit identified as branch tip in second origin;
    - _origin/HEAD_ - commit identified as current in origin.
 
-* Now let's push our branch _<your-prefix>/rebase-b_ to first origin, remove it locally, then pull it back and push to a second-origin. Execute steps one at a time to follow along:
+* Now let's push our branch `<your prefix>/rebase-b` to first origin, remove it locally, then pull it back and push to a second-origin. Execute steps one at a time to follow along:
 ```
-git checkout <your-prefix>/rebase-b
+git checkout <your prefix>/rebase-b
 git push origin
 git checkout master
 git branch --delete <your-previx>/rebase-b
-git checkout --track origin/<your-prefix>/rebase-b
+git checkout --track origin/<your prefix>/rebase-b
 git push second-origin
 ```
 * Revisit second repository on GitHub once again.
