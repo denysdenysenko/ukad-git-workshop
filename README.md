@@ -58,13 +58,13 @@ git push --force
                                    /      | |      \
                                   /       | |       \
                                  | _______| |_______ |
-                                 |/ ----- \ / ----- \|
-                                /  (     )   (     )  \
+                                 |/ ----- \_/ ----- \|
+                                /  (     ) = (     )  \
                                / \  ----- ( ) -----  / \
                               /   \      /|||\      /   \
                              /     \    /|||||\    /     \
-                            /       \  /|||||||\  /       \
-                             `--...__ o=========o ___...--'
+                            /       \  o=======o  /       \
+                           /____,.--'     \ /     '--...___\
 ```
 * Open your branch in GitHub to see that wrong commit has disappeared there too.
 
@@ -193,4 +193,35 @@ git log --oneline --graph --all
 Rebasing is harder in some cases, but the great outcome is that you can have a clean straight repository history that's easy to navigate through.
 
 ## Multiple origins
+You can work with git repositoryies using different topoligies, where you can have a single server as your team's main origin, multiple servers, chain servers etc.
+### Two remote servers
+* Create your own git repository, leave it empty and not initialized. In my case I created repository at https://github.com/denysdenysenko/mess-up-with-git-second-origin.git.
+* Execute next command to add this new repository as your additional remote server:
+```
+git remote add second-origin https://github.com/denysdenysenko/mess-up-with-git-second-origin.git
+git remote -v
+```
+* If you open your new remote server on GitHup you'd see it's empty. Let's push some work there:
+```
+git checkout master
+git push second-origin
+```
+* If you open your new remote repository now you'd see that it contains exactly the same commit as the initial origin has. Content and ids or commits will also match.
+* Let's now check how we can see if certain commit has got into a specific remote. Execute `git log` and review branch names list in parentheses:
+- _HEAD ->  master_ - my current local branch with current position on this commit;
+- _origin/master_ - same commit identified as branch tip in origin;
+- _second-origin/master_ - same commit identified as branch tip in second origin;
+- _origin/HEAD_ - commit identified as current in origin.
 
+* Now let's push our branch _<your-prefix>/rebase-b_ to first origin, remove it locally, then pull it back and push to a second-origin. Execute steps one at a time to follow along:
+```
+git checkout <your-prefix>/rebase-b
+git push origin
+git checkout master
+git branch --delete <your-previx>/rebase-b
+git checkout --track origin/<your-prefix>/rebase-b
+git push second-origin
+```
+* Revisit second repository on GitHub once again.
+
+Using this approach you can pull from one repository, push to another repository, set code server in between, mimik forking etc.
