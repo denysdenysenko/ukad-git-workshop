@@ -208,10 +208,10 @@ git push second-origin
 ```
 * If you open your new remote repository now you'd see that it contains exactly the same commit as the initial origin has. Content and ids or commits will also match.
 * Let's now check how we can see if certain commit has got into a specific remote. Execute `git log` and review branch names list in parentheses:
- - _HEAD ->  master_ - my current local branch with current position on this commit;
- - _origin/master_ - same commit identified as branch tip in origin;
- - _second-origin/master_ - same commit identified as branch tip in second origin;
- - _origin/HEAD_ - commit identified as current in origin.
+   - _HEAD ->  master_ - my current local branch with current position on this commit;
+   - _origin/master_ - same commit identified as branch tip in origin;
+   - _second-origin/master_ - same commit identified as branch tip in second origin;
+   - _origin/HEAD_ - commit identified as current in origin.
 
 * Now let's push our branch _<your-prefix>/rebase-b_ to first origin, remove it locally, then pull it back and push to a second-origin. Execute steps one at a time to follow along:
 ```
